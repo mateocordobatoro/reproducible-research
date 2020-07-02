@@ -1,3 +1,11 @@
+---
+title: "project week 2"
+author: "Mateo Córdoba Toro"
+date: "2/7/2020"
+output: html_document
+  keep_md: true
+---
+
 Project Assignment 1 - Week 2
 ================================
 
