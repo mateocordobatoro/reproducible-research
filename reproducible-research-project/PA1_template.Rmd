@@ -53,7 +53,8 @@ qplot(suma,data=df,geom = "histogram", bins=5)+
            x = 19500, y = 25, size = 5, colour = "blue") +
   annotate("text", label = paste("Median = ",median(df$suma), sep = " "),
            x = 19500, y = 21, size = 5, colour = "red")
-
+dev.copy(png, "hist1.png",width=480, height=480)
+dev.off()
 ```
 
 
@@ -77,6 +78,8 @@ plot(df_interval$interval,df_interval$mean, type = "l",
      xlab = "Interval", 
      ylab = "Mean steps")
 
+dev.copy(png, "timeseries.png",width=480, height=480)
+dev.off()
 ```
 
 ## Imputing missing values
@@ -114,6 +117,8 @@ qplot(suma,data=df_imp,geom = "histogram", bins=5)+
   geom_vline(xintercept = median(df_imp$suma), colour="red", linetype = "solid")  +
   annotate("text", label = paste("Median = Mean = ",trunc(median(df_imp$suma)), sep = " "),
            x = 19000, y = 21, size = 5, colour = "red")
+dev.copy(png, "hist2.png",width=480, height=480)
+dev.off()
 
 ```
 
@@ -148,5 +153,7 @@ ggplot(data_1, aes(interval, steps))+
   labs(title = "Steps taken per 5-minute interval",
        x = "Interval",
        y = " Average Number of Steps")
+dev.copy(png, "timeseries2.png",width=480, height=480)
+dev.off()
 ```
 
