@@ -90,7 +90,7 @@ data[is.na(data$steps),1] <- mean(data$steps, na.rm = TRUE)
 
 When the missing values are replaced by the mean of the total data, it is observed how the distribution of the histogram coincides towards the mean. Behavior that is not surprising since it is for this value that the missing values are being replaced.
 
-```{r imp missing values hist, warning= FALSE, message=FALSE}
+```{r imp missing values hist}
 df_imp  <- data %>% group_by(date) %>% summarise(suma  = sum(steps, na.rm = TRUE))
 qplot(suma,data=df_imp,geom = "histogram", bins=5)+
   labs(title = "Imp_Histogram of the total number of steps taken each day",
@@ -120,7 +120,7 @@ We made the graph taking the x-axis as the intervals and the axis and the mean o
 
 A slight rise is observed in the middle of the steps taken on weekends.
 
-```{r steps weekend panel, warning= FALSE, message=FALSE}
+```{r steps weekend panel}
 data_1 <- aggregate(steps ~ interval + Weekend, data, mean)
 
 ggplot(data_1, aes(interval, steps))+
