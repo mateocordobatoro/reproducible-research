@@ -3,11 +3,9 @@ title: "project week 2"
 author: "Mateo Córdoba Toro"
 date: "2/7/2020"
 output: html_document
-  keep_md: true
 ---
 
-Project Assignment 1 - Week 2
-================================
+# Project Assignment 1 - Week 2
 
 ## Mateo Córdoba Toro 
 
@@ -47,7 +45,14 @@ df <- data %>% group_by(date) %>% summarise(suma  = sum(steps, na.rm = TRUE))
 qplot(suma,data=df,geom = "histogram", bins=5)+
   labs(title = "Histogram of the total number of steps taken each day",
        x     = "Steps",
-       y     = "Freq")
+       y     = "Freq")+
+  geom_vline(xintercept = mean(df$suma), colour="blue", linetype = "solid") +
+  geom_vline(xintercept = median(df$suma), colour="red", linetype = "solid")  +
+  annotate("text", label = paste("Mean = ",trunc(mean(df$suma)), sep = " "), 
+           x = 19500, y = 25, size = 5, colour = "blue") +
+  annotate("text", label = paste("Median = ",median(df$suma), sep = " "),
+           x = 19500, y = 21, size = 5, colour = "red")
+
 ```
 
 
@@ -103,7 +108,12 @@ df_imp  <- data %>% group_by(date) %>% summarise(suma  = sum(steps, na.rm = TRUE
 qplot(suma,data=df_imp,geom = "histogram", bins=5)+
   labs(title = "Imp_Histogram of the total number of steps taken each day",
        x     = "Imp_Steps",
-       y     = "Freq")
+       y     = "Freq")+
+  geom_vline(xintercept = mean(df_imp$suma), colour="blue", linetype = "solid") +
+  geom_vline(xintercept = median(df_imp$suma), colour="red", linetype = "solid")  +
+  annotate("text", label = paste("Median = Mean = ",trunc(median(df_imp$suma)), sep = " "),
+           x = 19000, y = 21, size = 5, colour = "red")
+
 ```
 
 ### Mean and median 
@@ -132,7 +142,7 @@ A slight rise is observed in the middle of the steps taken on weekends.
 data_1 <- aggregate(steps ~ interval + Weekend, data, mean)
 
 ggplot(data_1, aes(interval, steps))+
-  geom_line(aes(color=Weekend))+
+  geom_line()+
   facet_grid(Weekend~.)+
   labs(title = "Steps taken per 5-minute interval",
        x = "Interval",
