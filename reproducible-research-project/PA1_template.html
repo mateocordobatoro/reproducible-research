@@ -445,9 +445,8 @@ plot(df_interval$interval,df_interval$mean, type = &quot;l&quot;,
 <div id="histogram" class="section level3">
 <h3>Histogram</h3>
 <p>When the missing values are replaced by the mean of the total data, it is observed how the distribution of the histogram coincides towards the mean. Behavior that is not surprising since it is for this value that the missing values are being replaced.</p>
-<pre class="r"><code>df_imp  &lt;- data %&gt;% group_by(date) %&gt;% summarise(suma  = sum(steps, na.rm = TRUE))</code></pre>
-<pre><code>## `summarise()` ungrouping output (override with `.groups` argument)</code></pre>
-<pre class="r"><code>qplot(suma,data=df_imp,geom = &quot;histogram&quot;, bins=5)+
+<pre class="r"><code>df_imp  &lt;- data %&gt;% group_by(date) %&gt;% summarise(suma  = sum(steps, na.rm = TRUE))
+qplot(suma,data=df_imp,geom = &quot;histogram&quot;, bins=5)+
   labs(title = &quot;Imp_Histogram of the total number of steps taken each day&quot;,
        x     = &quot;Imp_Steps&quot;,
        y     = &quot;Freq&quot;)+
