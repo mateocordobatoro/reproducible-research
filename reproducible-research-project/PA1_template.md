@@ -3,6 +3,7 @@ title: "project week 2"
 author: "Mateo Córdoba Toro"
 date: "2/7/2020"
 output: html_document
+keep_md: true
 ---
 
 # Project Assignment 1 - Week 2
@@ -52,7 +53,8 @@ qplot(suma,data=df,geom = "histogram", bins=5)+
            x = 19500, y = 25, size = 5, colour = "blue") +
   annotate("text", label = paste("Median = ",median(df$suma), sep = " "),
            x = 19500, y = 21, size = 5, colour = "red")
-
+dev.copy(png, "hist1.png",width=480, height=480)
+dev.off()
 ```
 
 
@@ -76,6 +78,8 @@ plot(df_interval$interval,df_interval$mean, type = "l",
      xlab = "Interval", 
      ylab = "Mean steps")
 
+dev.copy(png, "timeseries.png",width=480, height=480)
+dev.off()
 ```
 
 ## Imputing missing values
@@ -103,7 +107,7 @@ data[is.na(data$steps),1] <- mean(data$steps, na.rm = TRUE)
 
 When the missing values are replaced by the mean of the total data, it is observed how the distribution of the histogram coincides towards the mean. Behavior that is not surprising since it is for this value that the missing values are being replaced.
 
-```{r imp missing values hist}
+```{r imp missing values hist, message=FALSE}
 df_imp  <- data %>% group_by(date) %>% summarise(suma  = sum(steps, na.rm = TRUE))
 qplot(suma,data=df_imp,geom = "histogram", bins=5)+
   labs(title = "Imp_Histogram of the total number of steps taken each day",
@@ -113,6 +117,8 @@ qplot(suma,data=df_imp,geom = "histogram", bins=5)+
   geom_vline(xintercept = median(df_imp$suma), colour="red", linetype = "solid")  +
   annotate("text", label = paste("Median = Mean = ",trunc(median(df_imp$suma)), sep = " "),
            x = 19000, y = 21, size = 5, colour = "red")
+dev.copy(png, "hist2.png",width=480, height=480)
+dev.off()
 
 ```
 
@@ -147,5 +153,7 @@ ggplot(data_1, aes(interval, steps))+
   labs(title = "Steps taken per 5-minute interval",
        x = "Interval",
        y = " Average Number of Steps")
+dev.copy(png, "timeseries2.png",width=480, height=480)
+dev.off()
 ```
 
